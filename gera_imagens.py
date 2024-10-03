@@ -56,7 +56,7 @@ if __name__ == "__main__":
     names_event_values.clear()    
 
     parser.add_argument('-n', '--n_events',default=len(event_table_pd), type=int, help='Specify the the number of events that you want')
-
+    args = parser.parse_args()
 
     # In[20]:
     #montar a tabela de wire
