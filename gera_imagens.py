@@ -11,18 +11,18 @@ from h5py import File
 import argparse
 from skimage.measure import block_reduce
 from math import floor, ceil
-
+import os
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='gerador de imagens', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('-f', '--filename',default='/home/gabriel/Downloads/bnb_WithWire_00.h5', type=str, help='Specify the file name(.h5)')
-    parser.add_argument('-n', '--n_events',default=1, type=int, help='Specify the the number of events that you want')
+    parser.add_argument('-f', '--filename',default='./bnb_WithWire_00.h5', type=str, help='Specify the file name(.h5)')
 
     args = parser.parse_args()
+    filename=args.filename
     # In[17]:
     #abre o arquivo
-    f = File(args.filename,'r')
-
+    f = File(filename,'r')
+    filename=os.path.splitext(filename)[0]
     # In[18]:
     #mostra todas as tabelas disponiveis no arquivo .h5 aberto
     labels=[]
@@ -54,6 +54,8 @@ if __name__ == "__main__":
     
     event_table_pd = pd.DataFrame(temp_dict)
     names_event_values.clear()    
+
+    parser.add_argument('-n', '--n_events',default=len(event_table_pd), type=int, help='Specify the the number of events that you want')
 
 
     # In[20]:
@@ -143,7 +145,7 @@ if __name__ == "__main__":
 
         # Salva a primeira imagem
         plt.tight_layout()
-        plt.savefig(f"./figuras/event_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_0.png",  bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"./figuras/"+filename+f"_event_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_0.png",  bbox_inches='tight', pad_inches=0)
         plt.clf()  # Limpa a figura para a próxima imagem
 
         # Plota a segunda imagem
@@ -151,7 +153,7 @@ if __name__ == "__main__":
         plt.axis('off')
         # Salva a segunda imagem
         plt.tight_layout()
-        plt.savefig(f"./figuras/event_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_1.png", bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"./figuras/"+filename+f"_event_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_1.png", bbox_inches='tight', pad_inches=0)
         plt.clf()  # Limpa a figura para a próxima imagem
 
         # Plota a terceira imagem
@@ -159,7 +161,7 @@ if __name__ == "__main__":
         plt.axis('off')
         # Salva a terceira imagem
         plt.tight_layout()
-        plt.savefig(f"./figuras/event_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_2.png", bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"./figuras/"+filename+f"_event_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_2.png", bbox_inches='tight', pad_inches=0)
         plt.clf()  # Limpa a figura para a próxima imagem
 
         #mapa de classificao agora -----
@@ -291,7 +293,7 @@ if __name__ == "__main__":
         plt.axis('off')
         # Salva a primeira imagem
         plt.tight_layout()
-        plt.savefig(f"./figuras/hit_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_0.png",  bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"./figuras/"+filename+f"_hit_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_0.png",  bbox_inches='tight', pad_inches=0)
         plt.clf()  # Limpa a figura para a próxima imagem
 
         # Plota a segunda imagem
@@ -299,7 +301,7 @@ if __name__ == "__main__":
         plt.axis('off')
         # Salva a segunda imagem
         plt.tight_layout()
-        plt.savefig(f"./figuras/hit_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_1.png",  bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"./figuras/"+filename+f"_hit_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_1.png",  bbox_inches='tight', pad_inches=0)
         plt.clf()  # Limpa a figura para a próxima imagem
 
         # Plota a terceira imagem
@@ -307,6 +309,6 @@ if __name__ == "__main__":
         plt.axis('off')
         # Salva a terceira imagem
         plt.tight_layout()
-        plt.savefig(f"./figuras/hit_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_2.png",  bbox_inches='tight', pad_inches=0)
+        plt.savefig(f"./figuras/"+filename+f"_hit_{evt_id[0]}_{evt_id[1]}_{evt_id[2]}_plane_2.png",  bbox_inches='tight', pad_inches=0)
         plt.clf()  # Limpa a figura para a próxima imagem
                 
