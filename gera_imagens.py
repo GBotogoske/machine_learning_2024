@@ -64,6 +64,8 @@ if __name__ == "__main__":
     end_hit=0
     end_edep=0
 
+    print(f"VOU SALVAR {N_fotos}  eventos")
+
     for evento_index in range(N_fotos):
         max=8256
         init=max*evento_index
@@ -132,15 +134,13 @@ if __name__ == "__main__":
             planeadcs[p][planeadcs[p]<adccutoff] = 0
             planeadcs[p][planeadcs[p]>adcsaturation] = adcsaturation
 
-
         # In[29]:
         evt_id = [this_run, this_subrun, this_event]
         zmax = adcsaturation
 
         print("Run / Sub / Event : %i / %i / %i - saturation set to ADC sum=%.2f" % (evt_id[0], evt_id[1], evt_id[2], zmax))
-
         # Plota a primeira imagem
-        plt.imshow(planeadcs[0].T, vmin=0, vmax=zmax, origin='lower', cmap='jet')
+        plt.imshow(planeadcs[0].T, vmin=0, vmax=zmax, origin='lower')
         plt.axis('off')
 
         # Salva a primeira imagem
@@ -149,7 +149,7 @@ if __name__ == "__main__":
         plt.clf()  # Limpa a figura para a próxima imagem
 
         # Plota a segunda imagem
-        plt.imshow(planeadcs[1].T, vmin=0, vmax=zmax, origin='lower', cmap='jet')
+        plt.imshow(planeadcs[1].T, vmin=0, vmax=zmax, origin='lower')
         plt.axis('off')
         # Salva a segunda imagem
         plt.tight_layout()
@@ -157,7 +157,7 @@ if __name__ == "__main__":
         plt.clf()  # Limpa a figura para a próxima imagem
 
         # Plota a terceira imagem
-        plt.imshow(planeadcs[2].T, vmin=0, vmax=zmax, origin='lower', cmap='jet')
+        plt.imshow(planeadcs[2].T, vmin=0, vmax=zmax, origin='lower')
         plt.axis('off')
         # Salva a terceira imagem
         plt.tight_layout()
@@ -289,7 +289,7 @@ if __name__ == "__main__":
 
 
         # Plota a primeira imagem
-        plt.imshow(planetruth[0].T, vmin=-1, vmax=1, origin='lower', cmap='coolwarm')
+        plt.imshow(planetruth[0].T, vmin=-1, vmax=1, origin='lower')
         plt.axis('off')
         # Salva a primeira imagem
         plt.tight_layout()
@@ -297,7 +297,7 @@ if __name__ == "__main__":
         plt.clf()  # Limpa a figura para a próxima imagem
 
         # Plota a segunda imagem
-        plt.imshow(planetruth[1].T, vmin=-1, vmax=1, origin='lower', cmap='coolwarm')
+        plt.imshow(planetruth[1].T, vmin=-1, vmax=1, origin='lower')
         plt.axis('off')
         # Salva a segunda imagem
         plt.tight_layout()
@@ -305,7 +305,7 @@ if __name__ == "__main__":
         plt.clf()  # Limpa a figura para a próxima imagem
 
         # Plota a terceira imagem
-        plt.imshow(planetruth[2].T, vmin=-1, vmax=1, origin='lower', cmap='coolwarm')
+        plt.imshow(planetruth[2].T, vmin=-1, vmax=1, origin='lower')
         plt.axis('off')
         # Salva a terceira imagem
         plt.tight_layout()
